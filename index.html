@@ -11,6 +11,8 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- 1. CSS BLOCK (LOGICALLY SEPARATE) -->
     <style>
@@ -20,8 +22,9 @@
         --color-secondary: #20b2aa; /* Teal - Accent/Hover */
         --color-background: #c6c6c6; /* Light gray - Main Background */
         --color-dialog: #ffffff; /* White */
+        --color-dialog-input: #e5eeee; /* Teal */
         --color-text: #000000; /* Black */
-        --color-shadow: #004b4b; /* Dark teal for pixel shadow */
+        --color-shadow: #9fcdcd; /* Dark teal for pixel shadow */
       }
 
       /* Apply pixel font to all elements */
@@ -81,7 +84,7 @@
       /* PIXEL INPUT STYLE */
       .retro-input {
         border: 2px solid var(--color-text);
-        background-color: var(--color-dialog);
+        background-color: var(--color-dialog-input);
         padding: 4px 6px;
         outline: none;
         box-shadow: inset 2px 2px 0 var(--color-shadow);
@@ -180,10 +183,10 @@
         class="w-full max-w-6xl retro-header text-center flex justify-between items-center"
       >
         <div class="flex items-center">
-          <span class="pixel-icon mr-2">✨</span>
+          <i data-lucide="sparkles" class="pixel-icon mr-2 w-4 h-4"></i>
           <h1 class="text-left">PROMPTCRAFTER</h1>
         </div>
-        <div class="text-xs">
+        <div class="text-xs hidden sm:block">
           LVL: <span class="text-yellow-400">99</span> | XP:
           <span class="text-green-400">MAX</span>
         </div>
@@ -192,8 +195,9 @@
       <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Input Form (Lg: Columns 1 & 2) -->
         <div class="lg:col-span-2 space-y-6 retro-card" id="input-form-card">
-          <h2 class="text-xl font-bold text-gray-800 pb-1">
-            <span class="pixel-icon mr-2">🔥</span>QUEST CORE INPUTS
+          <h2 class="text-xl font-bold text-gray-800 pb-1 flex items-center">
+            <i data-lucide="flame" class="pixel-icon mr-2 w-5 h-5"></i>QUEST
+            CORE INPUTS
           </h2>
 
           <!-- 1. PRIMARY GOAL (QUEST START) - Core Request -->
@@ -219,7 +223,7 @@
                   class="hint-button flex-shrink-0 w-10 h-24 flex items-center justify-center"
                   title="SUGGEST IDEA"
                 >
-                  💡
+                  <i data-lucide="lightbulb" class="w-5 h-5"></i>
                 </button>
               </div>
               <!-- END: Input with Hint Button -->
@@ -237,7 +241,7 @@
                   >OUTPUT FORMAT:</span
                 >
                 <!-- SELECT does not need a hint button -->
-                <select id="output" class="retro-input w-full">
+                <select id="output" class="retro-input w-full h-10">
                   <option value="Full Code">
                     FULL CODE (HTML/REACT/ANGULAR)
                   </option>
@@ -249,9 +253,7 @@
                 </select>
               </label>
               <label class="block">
-                <span class="text-xs font-medium block mb-1"
-                  >FRONTEND (E.G., REACT, VANILLA JS):</span
-                >
+                <span class="text-xs font-medium block mb-1">FRONTEND :</span>
                 <!-- START: Input with Hint Button -->
                 <div class="flex space-x-2">
                   <input
@@ -266,7 +268,7 @@
                     class="hint-button flex-shrink-0 w-10 h-10 flex items-center justify-center"
                     title="SUGGEST IDEA"
                   >
-                    💡
+                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
                   </button>
                 </div>
                 <!-- END: Input with Hint Button -->
@@ -311,7 +313,7 @@
                     class="hint-button flex-shrink-0 w-10 h-10 flex items-center justify-center"
                     title="SUGGEST IDEA"
                   >
-                    💡
+                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
                   </button>
                 </div>
                 <!-- END: Input with Hint Button -->
@@ -333,7 +335,7 @@
                     class="hint-button flex-shrink-0 w-10 h-32 flex items-center justify-center"
                     title="SUGGEST IDEA"
                   >
-                    💡
+                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
                   </button>
                 </div>
                 <!-- END: Input with Hint Button -->
@@ -344,9 +346,9 @@
           <!-- Pixel Generate Button -->
           <button
             id="generateBtn"
-            class="retro-button w-full py-4 text-xs font-bold shadow-xl"
+            class="retro-button w-full py-4 text-xs font-bold shadow-xl flex items-center justify-center"
           >
-            <span class="pixel-icon mr-2">⭐</span>
+            <i data-lucide="star" class="pixel-icon mr-2 w-4 h-4"></i>
             GENERATE MINIMAL QUEST
           </button>
         </div>
@@ -355,7 +357,7 @@
         <div class="lg:col-span-1 space-y-4">
           <div id="outputCard" class="retro-card sticky top-4">
             <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-              <span class="pixel-icon mr-2">💾</span>
+              <i data-lucide="save" class="pixel-icon mr-2 w-5 h-5"></i>
               GENERATED SCRIPT
             </h2>
             <textarea
@@ -370,7 +372,7 @@
               class="retro-button w-full py-3 mt-4 text-xs font-bold bg-teal-600 flex items-center justify-center"
               disabled
             >
-              <span class="pixel-icon mr-2">📋</span>
+              <i data-lucide="clipboard" class="pixel-icon mr-2 w-4 h-4"></i>
               <span id="copyText">COPY SCRIPT TO CLIPBOARD</span>
             </button>
             <div
@@ -383,12 +385,34 @@
 
       <!-- Retro Footer Style -->
       <footer class="w-full max-w-6xl mt-12 text-center retro-footer">
-        <p>© 2025 PROMPTCRAFTER. BUILT FOR GLORY.</p>
+        <p>
+          © 2025 PROMPTCRAFTER. BY
+          <span class="hover:text-yellow-500"
+            ><a
+              href="https://tri-aji-prabandaru.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >TRIAJI-DEV.</a
+            ></span
+          >
+        </p>
       </footer>
     </div>
 
     <!-- 3. JAVASCRIPT LOGIC (LOGICALLY SEPARATE) -->
     <script>
+      // Signature on Console
+      console.log(
+        '%c PROMPTCRAFTER %c By TRIAJI-DEV ',
+        'background: #008080; color: #ffffff; font-size: 16px; padding: 4px 8px; border-radius: 4px 0 0 4px;',
+        'background: #20b2aa; color: #000000; font-size: 16px; padding: 4px 8px; border-radius: 0 4px 4px 0;'
+      );
+
+      console.log(
+        '%c https://tri-aji-prabandaru.vercel.app/',
+        'background: #0f8080; color: #FFFFFF; font-size: 10px; padding: 4px 8px; border-radius: 4px;'
+      );
+
       // Suggestion Bank for each field (Adjusted for remaining inputs)
       const SUGGESTIONS = {
         goal: [
@@ -498,6 +522,7 @@
               // Specific height settings
               if (id === 'goal') element.classList.add('h-24');
               if (id === 'structureDetails') element.classList.add('h-32');
+              if (id === 'output') element.classList.add('h-10');
               if (id === 'outputPrompt')
                 element.classList.add('h-96', 'font-mono');
 
@@ -636,6 +661,9 @@ GENERATION MUST BE IN A FILE WITH AN APPROPRIATE TITLE.
           }
         });
       });
+
+      // Initialize Lucide Icons
+      lucide.createIcons();
     </script>
   </body>
 </html>
